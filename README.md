@@ -54,9 +54,22 @@ Edit `.env.local` with your configuration:
 NEXT_PUBLIC_API_URL=http://localhost:8000
 
 # Stack Auth credentials (obtain from Stack Auth dashboard)
-STACK_AUTH_PROJECT_ID=your_project_id_here
-STACK_AUTH_PUBLISHABLE_KEY=your_publishable_key_here
+NEXT_PUBLIC_STACK_PROJECT_ID=your_project_id_here
+NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY=your_publishable_key_here
+STACK_SECRET_SERVER_KEY=your_secret_key_here
 ```
+
+#### Where to find Stack Auth credentials
+
+1. Log in to your Stack Auth dashboard at [https://stack-auth.com](https://stack-auth.com)
+2. Navigate to your "Job Hunter" project
+3. Go to the **API Keys** section
+4. Copy the following values:
+   - **Project ID** → `NEXT_PUBLIC_STACK_PROJECT_ID`
+   - **Publishable Client Key** → `NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY`
+   - **Secret Server Key** → `STACK_SECRET_SERVER_KEY` (keep this secure!)
+
+**Security Note:** Never commit your `.env.local` file. The `STACK_SECRET_SERVER_KEY` should be kept confidential.
 
 ### 4. Run the development server
 
