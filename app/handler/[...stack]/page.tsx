@@ -23,5 +23,5 @@ import { stackServerApp } from "@/lib/stack";
 type HandlerProps = ComponentProps<typeof StackHandler>;
 
 export default function Handler(props: HandlerProps) {
-  return <StackHandler app={stackServerApp} {...props} />;
+  return <StackHandler {...props} app={stackServerApp} />;
 }
