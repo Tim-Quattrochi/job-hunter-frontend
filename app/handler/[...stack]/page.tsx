@@ -15,9 +15,13 @@
  * - Password reset flows
  */
 
+import type { ComponentProps } from "react";
+
 import { StackHandler } from "@stackframe/stack";
 import { stackServerApp } from "@/lib/stack";
 
-export default function Handler(props: any) {
+type HandlerProps = ComponentProps<typeof StackHandler>;
+
+export default function Handler(props: HandlerProps) {
   return <StackHandler app={stackServerApp} {...props} />;
 }
