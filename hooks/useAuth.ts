@@ -8,11 +8,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { useUser } from "@stackframe/stack";
+
+import { useStackUser } from "@/hooks/useStackUser";
 import { useAuthStore } from "@/store/auth";
 
 export function useAuth() {
-  const stackUser = useUser();
+  const stackUser = useStackUser();
   const { user, isLoading, error, fetchUser, logout } = useAuthStore();
 
   // Fetch backend profile when Stack Auth user is available
@@ -21,9 +22,9 @@ export function useAuth() {
       if (stackUser && !user && !isLoading) {
         try {
           // Get access token from Stack Auth
-          const accessToken = await stackUser.getAuthJson().then(
-            (auth) => auth.accessToken
-          );
+          const accessToken = await stackUser
+            .getAuthJson()
+            .then((auth) => auth.accessToken);
 
           if (accessToken) {
             await fetchUser(accessToken);
@@ -55,7 +56,7 @@ export function useAuth() {
     isAuthenticated: !!stackUser && !!user,
     // Sign out function
     signOut: async () => {
-      await stackUser?.signOut();
+      await stackUser?.signOut?.();
       logout();
     },
   };

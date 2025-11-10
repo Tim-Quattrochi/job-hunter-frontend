@@ -7,6 +7,7 @@
 
 import { NextResponse, type NextRequest } from "next/server";
 
+import { AUTH_TEST_MODE } from "@/lib/env";
 import { stackServerApp } from "@/lib/stack";
 
 const SIGN_IN_PATH = "/handler/signin";
@@ -20,6 +21,10 @@ const isPublicPath = (pathname: string): boolean =>
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (AUTH_TEST_MODE) {
+    return NextResponse.next();
+  }
 
   if (isPublicPath(pathname)) {
     return NextResponse.next();

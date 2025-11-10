@@ -6,8 +6,11 @@
  */
 
 import { create } from "zustand";
-import { CurrentUser } from "@/types/auth";
+
 import { getCurrentUser } from "@/lib/api/auth";
+import { AUTH_TEST_MODE } from "@/lib/env";
+import { getMockCurrentUser } from "@/lib/testing/mock-auth-api";
+import { CurrentUser } from "@/types/auth";
 
 interface AuthStore {
   user: CurrentUser | null;
@@ -34,7 +37,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
   fetchUser: async (accessToken: string) => {
     set({ isLoading: true, error: null });
     try {
-      const user = await getCurrentUser(accessToken);
+      const user = await (AUTH_TEST_MODE
+        ? getMockCurrentUser(accessToken)
+        : getCurrentUser(accessToken));
       set({ user, isLoading: false });
     } catch (error) {
       const errorMessage =

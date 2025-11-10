@@ -11,6 +11,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { AUTH_TEST_MODE } from "@/lib/env";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -25,6 +26,8 @@ export function ProtectedRoute({
   const router = useRouter();
 
   useEffect(() => {
+    if (AUTH_TEST_MODE) return;
+
     // Wait for auth to load
     if (isLoading) return;
 
@@ -33,6 +36,10 @@ export function ProtectedRoute({
       router.push(redirectTo);
     }
   }, [isAuthenticated, isLoading, stackUser, router, redirectTo]);
+
+  if (AUTH_TEST_MODE) {
+    return <>{children}</>;
+  }
 
   // Show loading state
   if (isLoading) {

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { StackProvider } from "@stackframe/stack";
+
+import { MockStackProvider } from "@/components/testing/MockStackProvider";
+import { AUTH_TEST_MODE } from "@/lib/env";
 import { stackServerApp } from "@/lib/stack";
 import "./globals.css";
 
@@ -29,7 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <StackProvider app={stackServerApp}>{children}</StackProvider>
+        {AUTH_TEST_MODE ? (
+          <MockStackProvider>{children}</MockStackProvider>
+        ) : (
+          <StackProvider app={stackServerApp}>{children}</StackProvider>
+        )}
       </body>
     </html>
   );

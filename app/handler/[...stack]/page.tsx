@@ -18,10 +18,17 @@
 import type { ComponentProps } from "react";
 
 import { StackHandler } from "@stackframe/stack";
+
+import { MockRegistrationPage } from "@/components/testing/MockRegistrationPage";
+import { AUTH_TEST_MODE } from "@/lib/env";
 import { stackServerApp } from "@/lib/stack";
 
 type HandlerProps = ComponentProps<typeof StackHandler>;
 
 export default function Handler(props: HandlerProps) {
+  if (AUTH_TEST_MODE) {
+    return <MockRegistrationPage />;
+  }
+
   return <StackHandler {...props} app={stackServerApp} />;
 }

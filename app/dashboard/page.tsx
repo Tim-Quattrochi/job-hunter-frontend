@@ -94,7 +94,10 @@ function DashboardContent() {
               <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
                 Free Swipes
               </p>
-              <p className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-2">
+              <p
+                data-testid="free-swipes-count"
+                className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-2"
+              >
                 {user.profile.free_swipes_remaining}
               </p>
             </div>
@@ -102,7 +105,10 @@ function DashboardContent() {
               <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                 Paid Credits
               </p>
-              <p className="text-4xl font-bold text-green-700 dark:text-green-300 mt-2">
+              <p
+                data-testid="paid-credits-count"
+                className="text-4xl font-bold text-green-700 dark:text-green-300 mt-2"
+              >
                 {user.profile.paid_credits}
               </p>
             </div>
@@ -110,7 +116,10 @@ function DashboardContent() {
               <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">
                 Total Swipes
               </p>
-              <p className="text-4xl font-bold text-purple-700 dark:text-purple-300 mt-2">
+              <p
+                data-testid="total-swipes-count"
+                className="text-4xl font-bold text-purple-700 dark:text-purple-300 mt-2"
+              >
                 {totalSwipes}
               </p>
             </div>
